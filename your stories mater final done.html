@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Stories Matter - Share Your Story</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            color: #555;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .tagline {
+            font-size: 0.95em;
+            color: #777;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .info-section {
+            background: white;
+            padding: 35px 40px;
+            margin-top: 2px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p {
+            color: #555;
+            font-size: 1em;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-top: 12px;
+            padding-left: 25px;
+            color: #555;
+        }
+
+        .info-box li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .info-box.highlight {
+            background: linear-gradient(135deg, #fff9e6 0%, #fffef0 100%);
+            border-left-color: #ffd700;
+        }
+
+        .info-box.highlight h3 {
+            color: #cc9900;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 50px 40px;
+            margin-top: 2px;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            color: #666;
+            font-size: 1.15em;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .share-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .share-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .share-button:active {
+            transform: translateY(-2px);
+        }
+
+        .button-subtext {
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.95em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .crisis-resources {
+            background: white;
+            padding: 40px;
+            margin-top: 2px;
+        }
+
+        .crisis-box {
+            background: linear-gradient(135deg, #ffe6e6 0%, #fff0f0 100%);
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.15);
+        }
+
+        .crisis-box h3 {
+            color: #c0392b;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .crisis-intro {
+            color: #721c24;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            font-weight: 500;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .resource-item {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .resource-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-item strong {
+            color: #c0392b;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .resource-item p {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .resource-number {
+            color: #c0392b;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .footer {
+            background: white;
+            padding: 30px 40px;
+            margin-top: 2px;
+            border-radius: 0 0 20px 20px;
+            text-align: center;
+            color: #666;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h4 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 35px 25px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .header p {
+                font-size: 1.1em;
+            }
+
+            .info-section,
+            .cta-section,
+            .crisis-resources {
+                padding: 25px 20px;
+            }
+
+            .info-box,
+            .crisis-box {
+                padding: 20px;
+            }
+
+            .share-button {
+                padding: 18px 40px;
+                font-size: 1.2em;
+            }
+
+            .features-grid,
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 25px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .share-button {
+                padding: 16px 35px;
+                font-size: 1.1em;
+            }
+
+            .cta-content h2 {
+                font-size: 1.6em;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Your Stories Matter</h1>
+            <p>A safe space to share your journey of survival, healing, and hope</p>
+            <p class="tagline">"You are braver than you believe, stronger than you seem, and more loved than you know."</p>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <div class="info-box animate-in" style="animation-delay: 0.1s;">
+                <h3>🔒 Your Privacy & Safety First</h3>
+                <p><strong>Your story will be completely anonymous.</strong> We are committed to protecting your identity and creating a safe space for you to share.</p>
+                <p>Here's our promise to you:</p>
+                <ul>
+                    <li><strong>Complete anonymity:</strong> We will never share your email or personal information</li>
+                    <li><strong>Identity protection:</strong> All identifying details will be carefully removed from your story</li>
+                    <li><strong>Your consent matters:</strong> We will only use your story with your explicit permission</li>
+                    <li><strong>Safe sharing:</strong> Stories are shared as animated content to further protect your identity</li>
+                </ul>
+            </div>
+
+            <div class="info-box highlight animate-in" style="animation-delay: 0.3s;">
+                <h3>💜 Why Your Story Matters</h3>
+                <p>Every story shared here helps break the silence and shows others they're not alone. Your courage in sharing can be a beacon of hope for someone else walking a similar path.</p>
+                <p>Whether you're in the midst of your journey or years into healing, your voice deserves to be heard. Your experience, your strength, and your survival matter.</p>
+            </div>
+
+            <div class="features-grid animate-in" style="animation-delay: 0.5s;">
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h4>Share Safely</h4>
+                    <p>Complete anonymity guaranteed. Your identity is protected at every step.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h4>Build Community</h4>
+                    <p>Connect with others through shared experiences and mutual support.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <h4>Inspire Others</h4>
+                    <p>Your story can be the light that guides someone else through darkness.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <div class="cta-section animate-in" style="animation-delay: 0.7s;">
+            <div class="cta-content">
+                <h2>Ready to Share Your Story?</h2>
+                <p>Take your time. Share as much or as little as you're comfortable with. There's no pressure, no judgment—just a safe space to be heard.</p>
+                
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSczhH4cGTK4W-FjlkPTqq-Jx_W3FK39wBGH9y9yoCWxTnL3Hg/viewform" target="_blank" class="share-button">
+                    Share My Story
+                </a>
+                
+                <p class="button-subtext">Opens in a new window • Takes 5-10 minutes</p>
+            </div>
+        </div>
+
+        <!-- Crisis Resources -->
+        <div class="crisis-resources animate-in" style="animation-delay: 0.9s;">
+            <div class="crisis-box">
+                <h3>🆘 Need Immediate Help?</h3>
+                <p class="crisis-intro">If you're in crisis or need immediate support, please reach out. You don't have to face this alone. Help is available 24/7:</p>
+                
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <strong>988 Suicide & Crisis Lifeline</strong>
+                        <p>Call or Text: <span class="resource-number">988</span></p>
+                        <p>Free, confidential support 24/7 for people in distress</p>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>Crisis Text Line</strong>
+                        <p>Text <span class="resource-number">HOME</span> to <span class="resource-number">741741</span></p>
+                        <p>Free, 24/7 crisis support via text message</p>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>National Domestic Violence Hotline</strong>
+                        <p>Call: <span class="resource-number">1-800-799-7233</span></p>
+                        <p>Text: <span class="resource-number">START</span> to <span class="resource-number">88788</span></p>
+                        <p>Support for domestic violence survivors</p>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>RAINN Sexual Assault Hotline</strong>
+                        <p>Call: <span class="resource-number">1-800-656-4673</span></p>
+                        <p>Chat: <a href="https://www.rainn.org" target="_blank">rainn.org</a></p>
+                        <p>Support for sexual assault survivors</p>
+                    </div>
+
+                    <div class="resource-item">
+                        <strong>National Child Abuse Hotline</strong>
+                        <p>Call: <span class="resource-number">1-800-422-4453</span></p>
+                        <p>Professional crisis counselors available 24/7</p>
+                    </div>
+
+                    <div class="resource-item">
+                        <strong>Trevor Project (LGBTQ+ Youth)</strong>
+                        <p>Call: <span class="resource-number">1-866-488-7386</span></p>
+                        <p>Text <span class="resource-number">START</span> to <span class="resource-number">678-678</span></p>
+                        <p>Support for LGBTQ+ young people</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <h4>Your Stories Matter</h4>
+                <p><strong>Every voice deserves to be heard. Every story matters. Every survivor deserves support.</strong></p>
+                <p>We believe in the power of shared stories to heal, inspire, and create change. Thank you for being part of this community.</p>
+                
+                <p style="margin-top: 20px; font-size: 0.95em;">
+                    Questions? Concerns? Want to connect?<br>
+                    Email us at <a href="mailto:yourstoriesmatter@gmail.com">yourstoriesmatter@gmail.com</a>
+                </p>
+
+                <div class="social-links">
+                    <p style="color: #888; font-size: 0.9em;">
+                        Follow us on Instagram: <a href="https://instagram.com/yourstoriesmatter" target="_blank">@yourstoriesmatter</a>
+                    </p>
+                </div>
+
+                <p style="margin-top: 20px; font-size: 0.85em; color: #999;">
+                    © 2025 Your Stories Matter. All stories shared with permission and anonymized for privacy.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Trigger animations on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for any anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
